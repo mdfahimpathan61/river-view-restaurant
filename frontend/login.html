@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - River View Restaurant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-50 flex items-center justify-center h-screen">
+
+  <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">Login</h2>
+      
+      <input id="email" type="email" placeholder="Email" class="input input-bordered w-full mb-2">
+      <input id="password" type="password" placeholder="Password" class="input input-bordered w-full mb-2">
+      
+      <button onclick="login()" class="btn btn-primary w-full mt-2">Login</button>
+      <button onclick="window.location.href='index.html'" class="btn btn-secondary w-full mt-2">🏠 Home</button>
+
+      <p class="text-sm text-center mt-3">
+        Don't have an account? 
+        <a href="signup.html" class="text-blue-500 underline">Sign Up</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = "http://localhost:5000";
+
+    async function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (!email || !password) return alert("Please fill all fields");
+
+      try {
+        const res = await fetch(`${API_URL}/login`, {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          localStorage.setItem("token", data.token);
+          alert("Login successful!");
+          window.location.href = "account.html"; // Redirect to account page
+        } else {
+          alert(data.message || "Login failed");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Error connecting to server");
+      }
+    }
+  </script>
+
+</body>
+</html>

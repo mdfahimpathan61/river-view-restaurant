@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up - River View Restaurant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-50 flex items-center justify-center h-screen">
+
+  <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">Sign Up</h2>
+
+      <input id="name" type="text" placeholder="Full Name" class="input input-bordered w-full mb-2">
+      <input id="email" type="email" placeholder="Email" class="input input-bordered w-full mb-2">
+      <input id="password" type="password" placeholder="Password" class="input input-bordered w-full mb-2">
+      <input id="confirm-password" type="password" placeholder="Confirm Password" class="input input-bordered w-full mb-2">
+
+      <button onclick="signup()" class="btn btn-primary w-full mt-2">Sign Up</button>
+      <button onclick="window.location.href='index.html'" class="btn btn-secondary w-full mt-2">🏠 Home</button>
+
+      <p class="text-sm text-center mt-3">
+        Already have an account?
+        <a href="login.html" class="text-blue-500 underline">Login</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = "http://localhost:5000";
+
+    async function signup() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirmPassword = document.getElementById("confirm-password").value.trim();
+
+      if (!name || !email || !password || !confirmPassword) {
+        return alert("Please fill all fields");
+      }
+
+      if (password !== confirmPassword) {
+        return alert("Passwords do not match");
+      }
+
+      try {
+        const res = await fetch(`${API_URL}/signup`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          alert("Signup successful! Please login.");
+          window.location.href = "login.html";
+        } else {
+          alert(data.error || "Signup failed");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Error connecting to server");
+      }
+    }
+  </script>
+
+</body>
+</html>

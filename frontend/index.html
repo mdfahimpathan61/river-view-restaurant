@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>River View Restaurant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-50">
+
+  <!-- Navbar -->
+  <div class="navbar bg-base-100 shadow">
+    <div class="flex-1">
+      <img src="logo.png" class="h-10 w-10 mr-2" alt="Logo">
+      <a class="text-xl font-bold">River View Restaurant</a>
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1" id="nav-links"></ul>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section id="home" class="hero min-h-[70vh]" style="background-image: url('river.jpg');">
+    <div class="hero-overlay bg-opacity-50"></div>
+    <div class="hero-content text-center text-neutral-content">
+      <div class="max-w-md">
+        <h1 class="mb-5 text-5xl font-bold">Welcome to River View</h1>
+        <p class="mb-5">Taste the flavor, feel the river breeze 🌊</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Food Menu -->
+  <section class="p-6">
+    <h2 class="text-3xl font-bold text-center mb-6">Our Items</h2>
+    <div id="food-list" class="grid md:grid-cols-3 gap-6"></div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section id="reviews" class="p-6">
+    <h2 class="text-2xl font-bold mb-3">Customer Reviews</h2>
+    <div id="review-list" class="space-y-2 mb-4"></div>
+
+    <div class="card p-4 bg-white shadow-xl">
+      <h3 class="text-xl font-semibold mb-2">Write a Review</h3>
+      <textarea id="review-message" placeholder="Your review..." class="textarea textarea-bordered w-full mb-2"></textarea>
+      <button onclick="submitReview()" class="btn btn-primary w-full">Submit Review</button>
+    </div>
+  </section>
+
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-40 hidden justify-center items-center">
+    <div class="bg-white w-96 p-4 rounded shadow-lg">
+      <h2 class="text-xl font-bold mb-2">Your Cart</h2>
+      <ul id="cart-items" class="list-disc pl-5 mb-2"></ul>
+      <p>Total: <span id="cart-total">0</span> ৳</p>
+      <button onclick="placeOrder()" class="btn btn-success mt-2 w-full">Place Order</button>
+      <button onclick="toggleCart()" class="btn btn-error mt-2 w-full">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer footer-center p-4 bg-base-300 text-base-content mt-6">
+    <p>© <span id="year"></span> River View Restaurant | Beside the River, Dhaka</p>
+  </footer>
+
+  <script>
+    const API_URL = "http://localhost:5000";
+    let token = localStorage.getItem("token");
+    let cart = [];
+
+    // Navbar
+    function updateNavbar() {
+      const nav = document.getElementById("nav-links");
+      if(token) {
+        nav.innerHTML = `
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="account.html">👤 Account</a></li>
+          <li><a onclick="toggleCart()">Cart 🛒 (<span id="cart-count">${cart.length}</span>)</a></li>
+        `;
+      } else {
+        nav.innerHTML = `
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="login.html">Login / Signup</a></li>
+          <li><a onclick="toggleCart()">Cart 🛒 (<span id="cart-count">${cart.length}</span>)</a></li>
+        `;
+      }
+    }
+
+    // Load Foods
+    async function loadFoods() {
+      try {
+        const res = await fetch(`${API_URL}/foods`);
+        if(!res.ok) throw new Error("Failed to load foods");
+        const foods = await res.json();
+        const list = document.getElementById("food-list");
+        list.innerHTML = "";
+        foods.forEach(f => {
+          list.innerHTML += `
+            <div class="card bg-white shadow-xl">
+              <figure><img src="${f.image}" alt="${f.name}" class="h-40 w-full object-cover"></figure>
+              <div class="card-body">
+                <h2 class="card-title">${f.name}</h2>
+                <p>${parseFloat(f.price).toFixed(2)} ৳</p>
+                <div class="card-actions">
+                  <button onclick="addToCart(${f.food_id}, '${f.name}', ${parseFloat(f.price)})" class="btn btn-primary">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+      } catch(err) {
+        console.error(err);
+        alert("Error loading foods");
+      }
+    }
+
+    // Cart functions
+    function addToCart(id, name, price){
+      if(!token) return alert("Please login first!");
+      price = parseFloat(price);
+      const item = cart.find(i => i.food_id === id);
+      if(item) item.quantity++;
+      else cart.push({ food_id: id, name, price, quantity: 1 });
+      updateCartUI();
+    }
+
+    function updateCartUI(){
+      const ul = document.getElementById("cart-items");
+      ul.innerHTML = "";
+      let total = 0;
+      cart.forEach(i => {
+        ul.innerHTML += `<li>${i.name} - ${i.price.toFixed(2)} ৳ x ${i.quantity}</li>`;
+        total += i.price * i.quantity;
+      });
+      document.getElementById("cart-total").innerText = total.toFixed(2);
+      const countSpan = document.getElementById("cart-count");
+      if(countSpan) countSpan.innerText = cart.length;
+    }
+
+    function toggleCart(){
+      document.getElementById("cart-modal").classList.toggle("hidden");
+    }
+
+    async function placeOrder(){
+      if(cart.length === 0) return alert("Cart is empty!");
+      try {
+        const res = await fetch(`${API_URL}/cart/order`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+          },
+          body: JSON.stringify({ cart })  // send cart array
+        });
+        const data = await res.json();
+        if(res.ok){
+          alert(data.message);
+          cart = [];
+          updateCartUI();
+          toggleCart();
+        } else {
+          alert(data.message || "Error placing order");
+        }
+      } catch(err){
+        console.error(err);
+        alert("Error placing order");
+      }
+    }
+
+    // Reviews
+    async function loadReviews(){
+      try {
+        const res = await fetch(`${API_URL}/reviews`);
+        if(!res.ok) throw new Error("Failed to load reviews");
+        const reviews = await res.json();
+        const div = document.getElementById("review-list");
+        div.innerHTML = "";
+        reviews.forEach(r => {
+          div.innerHTML += `<div class="p-2 border rounded bg-white"><strong>${r.name}</strong>: ${r.message}</div>`;
+        });
+      } catch(err){
+        console.error(err);
+      }
+    }
+
+    async function submitReview(){
+      const message = document.getElementById("review-message").value.trim();
+      if(!message) return alert("Please enter review");
+      try{
+        const res = await fetch(`${API_URL}/reviews`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+          },
+          body: JSON.stringify({ message })
+        });
+        const data = await res.json();
+        if(res.ok){
+          alert("Review submitted!");
+          document.getElementById("review-message").value = "";
+          loadReviews();
+        } else {
+          alert(data.message || "Error submitting review");
+        }
+      } catch(err){
+        console.error(err);
+        alert("Error submitting review");
+      }
+    }
+
+    // Footer year
+    document.getElementById("year").innerText = new Date().getFullYear();
+
+    // Initial load
+    document.addEventListener("DOMContentLoaded", () => {
+      updateNavbar();
+      loadFoods();
+      loadReviews();
+    });
+
+  </script>
+
+  <script src="https://kit.fontawesome.com/a2e0d6c6f2.js" crossorigin="anonymous"></script>
+</body>
+</html>
