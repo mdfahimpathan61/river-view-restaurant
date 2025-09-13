@@ -123,17 +123,17 @@
       const nav = document.getElementById("nav-links");
       if(token) {
         nav.innerHTML = `
-          <li ><a href="index.html#home" class="text-white hover:border-b hover:border-yellow-300 transition duration-200">Home</a></li>
-          <li><a href="index.html#about"  class="text-white hover:border-b hover:border-yellow-300 transition duration-200">About</a></li>
-          <li><a href="account.html"  class="text-white hover:border-b hover:border-green-300 transition duration-200">👤 Account</a></li>
-          <li><a  class="text-white hover:border-b hover:border-yellow-200 transition duration-300" onclick="toggleCart()">Cart 🛒 (<span id="cart-count">${cart.length}</span>)</a></li>
+          <li ><a href="index.html#home" class="text-yellow-300 hover:border-b hover:border-yellow-300 transition duration-200">Home</a></li>
+          <li><a href="index.html#about"  class="text-yellow-300 hover:border-b hover:border-yellow-300 transition duration-200">About</a></li>
+          <li><a href="account.html"  class="text-yellow-300 hover:border-b hover:border-green-400 transition duration-200">👤 Account</a></li>
+          <li><a  class="text-yellow-300 hover:border-b hover:border-yellow-300 transition duration-300" onclick="toggleCart()">Cart 🛒 (<span id="cart-count">${cart.length}</span>)</a></li>
         `;
       } else {
         nav.innerHTML = `
-          <li ><a href="index.html#home" class="text-white hover:border-b hover:border-yellow-300 transition duration-200">Home</a></li>
-          <li><a href="index.html#about"  class=" text-white hover:border-b hover:border-yellow-300 transition duration-200">About</a></li>
-          <li><a href="login.html"   class="text-white hover:border-b hover:border-red-300 transition duration-200">Login / Signup</a></li>
-          <li><a class="text-white hover:border-b hover:border-yellow-300 transition duration-200" onclick="toggleCart()">Cart 🛒 (<span id="cart-count">${cart.length}</span>)</a></li>
+          <li ><a href="index.html#home" class="text-yellow-300 hover:border-b hover:border-yellow-300 transition duration-200">Home</a></li>
+          <li><a href="index.html#about"  class=" text-yellow-300 hover:border-b hover:border-yellow-300 transition duration-200">About</a></li>
+          <li><a href="login.html"   class="text-yellow-300 hover:border-b hover:border-red-400 transition duration-200">Login / Signup</a></li>
+          <li><a class="text-yellow-300 hover:border-b hover:border-yellow-300 transition duration-200" onclick="toggleCart()">Cart 🛒 (<span id="cart-count">${cart.length}</span>)</a></li>
         `;
       }
     }
@@ -154,7 +154,7 @@
                 <h2 class="card-title text-gray-500">${f.name}</h2>
                 <p class="text-gray-400">${parseFloat(f.price).toFixed(2)} ৳</p>
                 <div class="card-actions">
-                  <button onclick="addToCart(${f.food_id}, '${f.name}', ${parseFloat(f.price)})" class="border border-white btn bg-yellow-200 hover:bg-yellow-400 text-gray-600 hover:text-white">Add to Cart</button>
+                  <button onclick="addToCart(${f.food_id}, '${f.name}', ${parseFloat(f.price)})" class="border-none btn bg-yellow-200 hover:bg-yellow-300 text-gray-600 hover:text-white">Add to Cart</button>
                 </div>
               </div>
             </div>

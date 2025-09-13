@@ -5,38 +5,39 @@
   <title>My Account - River View Restaurant</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="/image/user.png">
 </head>
 <body class="bg-gray-50">
 
   <!-- Navbar -->
   <div class="navbar bg-base-100 shadow">
     <div class="flex-1">
-      <a href="index.html" class="btn btn-ghost normal-case text-xl">🏠 Home</a>
+      <a href="index.html" class="btn text-yellow-400 border  hover:border-yellow-400 normal-case text-xl">🏠 Home</a>
     </div>
     <div class="flex-none">
       <ul class="menu menu-horizontal px-1">
-        <li><a href="index.html">Back to Home</a></li>
-        <li><a onclick="logout()">🚪 Logout</a></li>
+        <li class="text-yellow-400"><a href="index.html">Back to Home</a></li>
+        <li ><a class="text-red-400 border border-red-300 hover:border-red-400" onclick="logout()">🚪 Logout</a></li>
       </ul>
     </div>
   </div>
 
   <!-- Account Section -->
   <section class="p-6">
-    <h2 class="text-3xl font-bold mb-4">👤 My Account</h2>
-    <div id="user-info" class="p-4 bg-white rounded shadow mb-6"></div>
+    <h2 class="text-3xl text-black font-bold mb-4 ">👤 My Account</h2>
+    <div id="user-info" class="p-4 bg-white rounded shadow-sm shadow-yellow-100 mb-6"></div>
 
     <!-- Add Money -->
-    <div class="card bg-white p-4 shadow mb-6">
-      <h3 class="text-xl font-semibold mb-2">💰 Add Money to Wallet</h3>
+    <div class="card bg-white p-10 shadow-lg shadow-red-100 mb-6">
+      <h3 class="text-xl text-black font-semibold mb-2">💰 Add Money to Wallet</h3>
       <input id="add-amount" type="number" placeholder="Amount" class="input input-bordered w-full mb-2">
       <input id="add-password" type="password" placeholder="Confirm Password" class="input input-bordered w-full mb-2">
-      <button onclick="addMoney()" class="btn btn-primary w-full">Add Money</button>
+      <button onclick="addMoney()" class="btn border-none bg-red-500 hover:bg-red-600 text-white font-semibold w-full">Add Money</button>
     </div>
 
     <!-- Transaction History -->
-    <div class="card bg-white p-4 shadow">
-      <h3 class="text-xl font-semibold mb-2">📜 Transaction History</h3>
+    <div class="card bg-white px-4 py-10 shadow-lg shadow-green-100">
+      <h3 class="text-2xl text-green-600 font-semibold my-4">📜 Transaction History</h3>
       <ul id="transactions" class="list-disc pl-5"></ul>
     </div>
   </section>
@@ -65,9 +66,9 @@
 
         const data = await res.json();
         document.getElementById("user-info").innerHTML = `
-          <p><strong>Name:</strong> ${data.name}</p>
-          <p><strong>Email:</strong> ${data.email}</p>
-          <p><strong>Wallet Balance:</strong> ${Number(data.wallet).toFixed(2)} ৳</p>
+          <p class="text-gray-500"><strong>Name : </strong> ${data.name}</p>
+          <p class="text-gray-500"><strong>Email : </strong> ${data.email}</p>
+          <p class="text-gray-500"><strong> Balance:</strong> ${Number(data.wallet).toFixed(2)} ৳</p>
         `;
       } catch (err) {
         console.error(err);
