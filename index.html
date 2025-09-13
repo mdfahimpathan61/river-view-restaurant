@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>River View Restaurant</title>
@@ -7,11 +8,12 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="/image/restaurant (1).png">
   <style>
-  a:hover {
-    background-color: transparent !important;
-  }
-</style>
+    a:hover {
+      background-color: transparent !important;
+    }
+  </style>
 </head>
+
 <body class="bg-gray-50">
 
   <!-- Navbar -->
@@ -25,8 +27,59 @@
     </div>
   </div>
 
+
+
+  <!-- cerosol -->
+
+ <div class="relative w-full overflow-hidden" id="carousel">
+  <div class="flex transition-transform duration-700" id="carousel-inner">
+    <!-- Slide 1 -->
+    <div class="min-w-full relative">
+      <section class="hero min-h-[70vh]" style="background-image: url('image/slider_1.jpeg');">
+        <div class="hero-overlay bg-opacity-50"></div>
+        <div class="hero-content text-center text-neutral-content">
+          <div class="max-w-md">
+            <h1 class="mb-5 text-5xl font-bold">Welcome to River View</h1>
+            <p class="mb-5">Taste the flavor, feel the river breeze 🌊</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="min-w-full relative">
+      <section class="hero min-h-[70vh]" style="background-image: url('image/slider_2.jpeg');">
+        <div class="hero-overlay bg-opacity-50"></div>
+        <div class="hero-content text-center text-neutral-content">
+          <div class="max-w-md">
+            <h1 class="mb-5 text-5xl font-bold">Welcome to River View</h1>
+            <p class="mb-5">Taste the flavor, feel the river breeze 🌊</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="min-w-full relative">
+      <section class="hero min-h-[70vh]" style="background-image: url('image/slider_3.jpeg');">
+        <div class="hero-overlay bg-opacity-50"></div>
+        <div class="hero-content text-center text-neutral-content">
+          <div class="max-w-md">
+            <h1 class="mb-5 text-5xl font-bold">Welcome to River View</h1>
+            <p class="mb-5">Taste the flavor, feel the river breeze 🌊</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <button onclick="prevSlide()" class="absolute left-5 top-1/2 btn btn-circle">❮</button>
+  <button onclick="nextSlide()" class="absolute right-5 top-1/2 btn btn-circle">❯</button>
+</div>
+
   <!-- Hero -->
-  <section id="home" class="hero min-h-[70vh]" style="background-image: url('image/slider_1.jpeg');">
+  <!-- <section id="home" class="hero min-h-[70vh]" style="background-image: url('image/slider_1.jpeg');">
     <div class="hero-overlay bg-opacity-50"></div>
     <div class="hero-content text-center text-neutral-content">
       <div class="max-w-md">
@@ -34,7 +87,7 @@
         <p class="mb-5">Taste the flavor, feel the river breeze 🌊</p>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- Food Menu -->
   <section class="mt-12 p-6">
@@ -49,8 +102,11 @@
 
     <div class="card p-4 bg-white shadow-xl my-8">
       <h3 class="text-gray-500 text-2xl font-semibold mb-2">Write your Review -</h3>
-      <textarea id="review-message" placeholder="Your review..." class="textarea textarea-bordered w-[75%] mb-4 p-16 mx-auto"></textarea>
-      <button onclick="submitReview()" class="btn border border-green-400 bg-green-300 text-white hover:bg-green-400 hover:text-white hover:border-white w-[30%] text-lg mx-auto ">Submit Review</button>
+      <textarea id="review-message" placeholder="Your review..."
+        class="textarea textarea-bordered w-[75%] mb-4 p-16 mx-auto"></textarea>
+      <button onclick="submitReview()"
+        class="btn border border-green-400 bg-green-300 text-white hover:bg-green-400 hover:text-white hover:border-white w-[30%] text-lg mx-auto ">Submit
+        Review</button>
     </div>
   </section>
 
@@ -67,51 +123,43 @@
 
 
 
-<!-- Footer 2 -->
-<hr>
-<footer class="footer bg-gray-200 footer-horizontal footer-center  text-primary-content p-10">
-  <aside>
-    <img src="image/restaurant (3).png" alt="">
-    <p class="font-bold">
-      River View Restaurant
-      <br />
-      Serving healthy and testy food since 2025
-    </p>
-    <p>Copyright © <span id="year"></span> - All right reserved</p>
-  </aside>
-  <nav>
-    <div class="grid grid-flow-col gap-4">
-      <a href="https://x.com/1452Md86857" target="_blank">
-        <img src="image/twitter (1).png" alt="">
-      </a>
-      <a href="https://www.youtube.com/" target="_blank">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          class="fill-current">
-          <path
-            d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-        </svg>
-      </a>
-      <a href="https://www.facebook.com/mdfahimpathan61" target="_blank">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          class="fill-current">
-          <path
-            d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-        </svg>
-      </a>
-    </div>
-  </nav>
-</footer>
+  <!-- Footer 2 -->
+  <hr>
+  <footer class="footer bg-gray-200 footer-horizontal footer-center  text-primary-content p-10">
+    <aside>
+      <img src="image/restaurant (3).png" alt="">
+      <p class="font-bold">
+        River View Restaurant
+        <br />
+        Serving healthy and testy food since 2025
+      </p>
+      <p>Copyright © <span id="year"></span> - All right reserved</p>
+    </aside>
+    <nav>
+      <div class="grid grid-flow-col gap-4">
+        <a href="https://x.com/1452Md86857" target="_blank">
+          <img src="image/twitter (1).png" alt="">
+        </a>
+        <a href="https://www.youtube.com/" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current">
+            <path
+              d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z">
+            </path>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/mdfahimpathan61" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current">
+            <path
+              d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z">
+            </path>
+          </svg>
+        </a>
+      </div>
+    </nav>
+  </footer>
 
 
-  
+
 
   <script>
     const API_URL = "http://localhost:5000";
@@ -121,7 +169,7 @@
     // Navbar
     function updateNavbar() {
       const nav = document.getElementById("nav-links");
-      if(token) {
+      if (token) {
         nav.innerHTML = `
           <li ><a href="index.html#home" class="text-yellow-300 hover:border-b hover:border-yellow-300 transition duration-200">Home</a></li>
           <li><a href="index.html#about"  class="text-yellow-300 hover:border-b hover:border-yellow-300 transition duration-200">About</a></li>
@@ -138,11 +186,34 @@
       }
     }
 
+    // Cerosole
+  let currentIndex = 0;
+  const slides = document.querySelectorAll("#carousel-inner > div");
+  const totalSlides = slides.length;
+  const carouselInner = document.getElementById("carousel-inner");
+
+  function updateCarousel() {
+    carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateCarousel();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+
+  // Auto-slide every 4 seconds
+  setInterval(nextSlide, 3000);
+
     // Load Foods
     async function loadFoods() {
       try {
         const res = await fetch(`${API_URL}/foods`);
-        if(!res.ok) throw new Error("Failed to load foods");
+        if (!res.ok) throw new Error("Failed to load foods");
         const foods = await res.json();
         const list = document.getElementById("food-list");
         list.innerHTML = "";
@@ -160,23 +231,23 @@
             </div>
           `;
         });
-      } catch(err) {
+      } catch (err) {
         console.error(err);
         alert("Error loading foods");
       }
     }
 
     // Cart functions
-    function addToCart(id, name, price){
-      if(!token) return alert("Please login first!");
+    function addToCart(id, name, price) {
+      if (!token) return alert("Please login first!");
       price = parseFloat(price);
       const item = cart.find(i => i.food_id === id);
-      if(item) item.quantity++;
+      if (item) item.quantity++;
       else cart.push({ food_id: id, name, price, quantity: 1 });
       updateCartUI();
     }
 
-    function updateCartUI(){
+    function updateCartUI() {
       const ul = document.getElementById("cart-items");
       ul.innerHTML = "";
       let total = 0;
@@ -186,15 +257,15 @@
       });
       document.getElementById("cart-total").innerText = total.toFixed(2);
       const countSpan = document.getElementById("cart-count");
-      if(countSpan) countSpan.innerText = cart.length;
+      if (countSpan) countSpan.innerText = cart.length;
     }
 
-    function toggleCart(){
+    function toggleCart() {
       document.getElementById("cart-modal").classList.toggle("hidden");
     }
 
-    async function placeOrder(){
-      if(cart.length === 0) return alert("Cart is empty!");
+    async function placeOrder() {
+      if (cart.length === 0) return alert("Cart is empty!");
       try {
         const res = await fetch(`${API_URL}/cart/order`, {
           method: "POST",
@@ -205,7 +276,7 @@
           body: JSON.stringify({ cart })  // send cart array
         });
         const data = await res.json();
-        if(res.ok){
+        if (res.ok) {
           alert(data.message);
           cart = [];
           updateCartUI();
@@ -213,32 +284,32 @@
         } else {
           alert(data.message || "Error placing order");
         }
-      } catch(err){
+      } catch (err) {
         console.error(err);
         alert("Error placing order");
       }
     }
 
     // Reviews
-    async function loadReviews(){
+    async function loadReviews() {
       try {
         const res = await fetch(`${API_URL}/reviews`);
-        if(!res.ok) throw new Error("Failed to load reviews");
+        if (!res.ok) throw new Error("Failed to load reviews");
         const reviews = await res.json();
         const div = document.getElementById("review-list");
         div.innerHTML = "";
         reviews.forEach(r => {
           div.innerHTML += `<div class="p-2 border rounded bg-white"><strong>${r.name}</strong>: ${r.message}</div>`;
         });
-      } catch(err){
+      } catch (err) {
         console.error(err);
       }
     }
 
-    async function submitReview(){
+    async function submitReview() {
       const message = document.getElementById("review-message").value.trim();
-      if(!message) return alert("Please enter review");
-      try{
+      if (!message) return alert("Please enter review");
+      try {
         const res = await fetch(`${API_URL}/reviews`, {
           method: "POST",
           headers: {
@@ -248,14 +319,14 @@
           body: JSON.stringify({ message })
         });
         const data = await res.json();
-        if(res.ok){
+        if (res.ok) {
           alert("Review submitted!");
           document.getElementById("review-message").value = "";
           loadReviews();
         } else {
           alert(data.message || "Error submitting review");
         }
-      } catch(err){
+      } catch (err) {
         console.error(err);
         alert("Error submitting review");
       }
@@ -275,4 +346,5 @@
 
   <script src="https://kit.fontawesome.com/a2e0d6c6f2.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
