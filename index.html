@@ -49,8 +49,8 @@
 
     <div class="card p-4 bg-white shadow-xl my-8">
       <h3 class="text-gray-500 text-2xl font-semibold mb-2">Write your Review -</h3>
-      <textarea id="review-message" placeholder="Your review..." class="textarea textarea-bordered w-[75%] mb-2 p-16 mx-auto"></textarea>
-      <button onclick="submitReview()" class="btn btn-outline btn-error w-[30%] text-lg mx-auto">Submit Review</button>
+      <textarea id="review-message" placeholder="Your review..." class="textarea textarea-bordered w-[75%] mb-4 p-16 mx-auto"></textarea>
+      <button onclick="submitReview()" class="btn border border-green-400 bg-green-300 text-white hover:bg-green-400 hover:text-white hover:border-white w-[30%] text-lg mx-auto ">Submit Review</button>
     </div>
   </section>
 
@@ -68,8 +68,8 @@
 
 
 <!-- Footer 2 -->
-
-<footer class="footer footer-horizontal footer-center  text-primary-content p-10">
+<hr>
+<footer class="footer bg-gray-200 footer-horizontal footer-center  text-primary-content p-10">
   <aside>
     <img src="image/restaurant (3).png" alt="">
     <p class="font-bold">
@@ -123,17 +123,17 @@
       const nav = document.getElementById("nav-links");
       if(token) {
         nav.innerHTML = `
-          <li ><a href="index.html#home" class="text-white hover:border-b hover:border-yellow-200 transition duration-200">Home</a></li>
-          <li><a href="index.html#about"  class="text-white hover:border-b hover:border-yellow-200 transition duration-200">About</a></li>
-          <li><a href="login.html"   class="text-white hover:border-b hover:border-green-300 transition duration-200">Account</a></li>
-          <li><a  class="text-white hover:border-b hover:border-yellow-200 transition duration-200" onclick="toggleCart()">Cart 🛒 (<span id="cart-count">${cart.length}</span>)</a></li>
+          <li ><a href="index.html#home" class="text-white hover:border-b hover:border-yellow-300 transition duration-200">Home</a></li>
+          <li><a href="index.html#about"  class="text-white hover:border-b hover:border-yellow-300 transition duration-200">About</a></li>
+          <li><a href="account.html"  class="text-white hover:border-b hover:border-green-300 transition duration-200">👤 Account</a></li>
+          <li><a  class="text-white hover:border-b hover:border-yellow-200 transition duration-300" onclick="toggleCart()">Cart 🛒 (<span id="cart-count">${cart.length}</span>)</a></li>
         `;
       } else {
         nav.innerHTML = `
-          <li ><a href="index.html#home" class="text-white hover:border-b hover:border-yellow-200 transition duration-200">Home</a></li>
-          <li><a href="index.html#about"  class=" text-white hover:border-b hover:border-yellow-200 transition duration-200">About</a></li>
-          <li><a href="login.html"   class="text-white hover:border-b hover:border-red-200 transition duration-200">Login / Signup</a></li>
-          <li><a class="text-white hover:border-b hover:border-yellow-200 transition duration-200" onclick="toggleCart()">Cart 🛒 (<span id="cart-count">${cart.length}</span>)</a></li>
+          <li ><a href="index.html#home" class="text-white hover:border-b hover:border-yellow-300 transition duration-200">Home</a></li>
+          <li><a href="index.html#about"  class=" text-white hover:border-b hover:border-yellow-300 transition duration-200">About</a></li>
+          <li><a href="login.html"   class="text-white hover:border-b hover:border-red-300 transition duration-200">Login / Signup</a></li>
+          <li><a class="text-white hover:border-b hover:border-yellow-300 transition duration-200" onclick="toggleCart()">Cart 🛒 (<span id="cart-count">${cart.length}</span>)</a></li>
         `;
       }
     }
@@ -148,13 +148,13 @@
         list.innerHTML = "";
         foods.forEach(f => {
           list.innerHTML += `
-            <div class="card bg-white shadow-xl">
+            <div class="card bg-white shadow-yellow-100 shadow-sm">
               <figure><img src="${f.image}" alt="${f.name}" class="h-40 w-full object-cover"></figure>
               <div class="card-body">
                 <h2 class="card-title text-gray-500">${f.name}</h2>
                 <p class="text-gray-400">${parseFloat(f.price).toFixed(2)} ৳</p>
                 <div class="card-actions">
-                  <button onclick="addToCart(${f.food_id}, '${f.name}', ${parseFloat(f.price)})" class="btn btn-accent text-gray-600 hover:text-white">Add to Cart</button>
+                  <button onclick="addToCart(${f.food_id}, '${f.name}', ${parseFloat(f.price)})" class="border border-white btn bg-yellow-200 hover:bg-yellow-400 text-gray-600 hover:text-white">Add to Cart</button>
                 </div>
               </div>
             </div>
