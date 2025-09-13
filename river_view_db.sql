@@ -17,9 +17,13 @@ CREATE TABLE food_items (
 );
 
 INSERT INTO food_items (name, image, price) VALUES 
-('Grilled Fish', 'images/grilled_fish.jpg', 250.00),
-('Chicken Curry', 'images/chicken_curry.jpg', 180.00),
-('Veggie Salad', 'images/veggie_salad.jpg', 120.00);
+('Grilled Fish', 'image/grilled_fish.jpg', 250.00),
+('Chicken Curry', 'image/chicken_curry.jpg', 180.00),
+('Veggie Salad', 'image/veggie_salad.jpg', 120.00),
+('Prawn Curry', 'image/prawn_curry.jpg', 220.00),
+('Butter Naan', 'image/butter_naan.jpg', 30.00),
+('Orange Juice', 'image/orange_juice.jpeg', 80.00);
+
 
 CREATE TABLE cart (
     cart_id INT AUTO_INCREMENT PRIMARY KEY,
