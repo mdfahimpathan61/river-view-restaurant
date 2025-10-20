@@ -122,7 +122,7 @@ app.post("/cart", verifyToken, (req, res) => {
   );
 });
 
-// ✅ Place order (fixed wallet issue)
+// ✅ Place order
 app.post("/cart/order", verifyToken, (req, res) => {
   const cartItems = req.body.cart; // [{food_id, name, price, quantity}]
 
